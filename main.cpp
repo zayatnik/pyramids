@@ -6,7 +6,7 @@ using namespace std;
 
 #pragma once
 
-const int N = 8; //выбираем число дисков. Можно определить это константой, можно сделать это число вводимым с клавиатуры
+const int N = 10; //выбираем число дисков. Можно определить это константой, можно сделать это число вводимым с клавиатуры
 
 int numoffree(int a[]) {    //функция, возвращающая номер самого левого свободного (равного нулю) места
 	int num = 0;     
@@ -41,6 +41,13 @@ void change(int a1[], int a2[]) {    //функция, которая в сло�
 		}
 }
 
+bool equal(int a1[N], int a2[N]) {
+	bool flag = 1;
+	for (int i = 0; i < N; i++)
+		if (a1[i] != a2[i])
+			flag = 0;
+	return flag;
+}
 
 void main() {               //основная функция - сама программа
 	setlocale(LC_CTYPE, "Russian");
@@ -68,34 +75,46 @@ void main() {               //основная функция - сама про�
 	if (N % 2 == 0) {
 		while (flag == 0) {
 			change(a1, a2);
-			if ((a2 == a) || (a3 == a))
-				flag == 1;
+			if (equal(a, a2) == 1)
+				flag = 1;
+			if (equal(a, a3) == 1)
+				flag = 1;
 			if (flag == 0) {
 				change(a1, a3);
-				if ((a2 == a) || (a3 == a))
-					flag == 1;
+				if (equal(a, a2) == 1)
+					flag = 1;
+				if (equal(a, a3) == 1)
+					flag = 1;
 			}
 			if (flag == 0) {
 				change(a2, a3);
-				if ((a2 == a) || (a3 == a))
-					flag == 1;
+				if (equal(a, a2) == 1)
+					flag = 1;
+				if (equal(a, a3) == 1)
+					flag = 1;
 			}
 		}
 	}
 	if (N % 2 == 1) {
 		while (flag == 0) {
 			change(a1, a3);
-			if ((a2 == a) || (a3 == a))
-				flag == 1;
+			if (equal(a, a2) == 1)
+				flag = 1;
+			if (equal(a, a3) == 1)
+				flag = 1;
 			if (flag == 0) {
 				change(a1, a2);
-				if ((a2 == a) || (a3 == a))
-					flag == 1;
+				if (equal(a, a2) == 1)
+					flag = 1;
+				if (equal(a, a3) == 1)
+					flag = 1;
 			}
 			if (flag == 0) {
 				change(a2, a3);
-				if ((a2 == a) || (a3 == a))
-					flag == 1;
+				if (equal(a, a2) == 1)
+					flag = 1;
+				if (equal(a, a3) == 1)
+					flag = 1;
 			}
 		}
 	}
@@ -110,6 +129,5 @@ void main() {               //основная функция - сама про�
 	cout << "a3" << endl;
 	for (int i = 0; i < N; i++)
 		cout << a3[i];
-	cout << "a3" << endl;
 
 }
